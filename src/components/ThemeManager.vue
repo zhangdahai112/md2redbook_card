@@ -1,7 +1,7 @@
 <template>
   <div class="theme-manager">
     <div class="theme-selector">
-      <label>主题：</label>
+      <label>主题样式</label>
       <select v-model="selectedTheme" @change="changeTheme">
         <option value="light">浅色主题</option>
         <option value="dark">深色主题</option>
@@ -17,7 +17,7 @@
     <div class="font-size-control">
       <h3>文字大小</h3>
       <div class="font-size-slider">
-        <label>基础文字大小：</label>
+        <label>基础文字大小</label>
         <input 
           type="range" 
           v-model.number="fontSize" 
@@ -40,7 +40,7 @@
       <h3>卡片尺寸</h3>
       <div class="size-inputs">
         <div class="size-input-group">
-          <label>宽度 (px):</label>
+          <label>宽度 (px)</label>
           <input 
             type="number" 
             v-model.number="rawCardWidth" 
@@ -51,7 +51,7 @@
           </span>
         </div>
         <div class="size-input-group">
-          <label>高度 (px):</label>
+          <label>高度 (px)</label>
           <input 
             type="number" 
             v-model.number="rawCardHeight" 
@@ -66,17 +66,17 @@
     </div>
     
     <div class="style-customizer">
-      <h3>自定义样式</h3>
+      <h3>自定义颜色</h3>
       <div class="color-picker">
-        <label>背景颜色：</label>
+        <label>背景颜色</label>
         <chrome-picker v-model="customStyle.backgroundColor" @input="updateCustomStyle" />
       </div>
       <div class="color-picker">
-        <label>文字颜色：</label>
+        <label>文字颜色</label>
         <chrome-picker v-model="customStyle.textColor" @input="updateCustomStyle" />
       </div>
       <div class="color-picker">
-        <label>边框颜色：</label>
+        <label>边框颜色</label>
         <chrome-picker v-model="customStyle.borderColor" @input="updateCustomStyle" />
       </div>
     </div>
@@ -214,82 +214,104 @@ const setFontSize = (size) => {
 
 <style scoped>
 .theme-manager {
-  padding: 20px;
-  background: #f5f5f5;
-  border-radius: 8px;
-  margin-bottom: 20px;
+  padding: 15px;
+  background: transparent;
+  border-radius: 0;
+  margin-bottom: 0;
 }
 
 .theme-selector {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
+}
+
+.theme-selector label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
 }
 
 .theme-selector select {
   padding: 8px;
   border-radius: 4px;
   border: 1px solid #ddd;
-  margin-left: 10px;
+  width: 100%;
 }
 
 .font-size-control {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   padding-top: 15px;
   border-top: 1px solid #ddd;
 }
 
 .font-size-slider {
-  margin-bottom: 15px;
+  margin-bottom: 10px;
+}
+
+.font-size-slider label {
+  display: block;
+  margin-bottom: 8px;
 }
 
 .font-size-slider input {
-  width: 100%;
+  width: 90%;
 }
 
 .font-size-value {
-  margin-left: 10px;
+  display: inline-block;
+  margin-top: 5px;
+  font-weight: bold;
 }
 
 .preset-sizes {
   display: flex;
-  gap: 10px;
+  gap: 5px;
+  flex-wrap: wrap;
 }
 
 .preset-sizes button {
-  padding: 6px 12px;
+  flex: 1;
+  padding: 6px;
   background-color: #f0f0f0;
   border: 1px solid #ddd;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 13px;
+  min-width: 40px;
 }
 
 .preset-sizes button.active {
   background-color: #e0e0e0;
+  font-weight: bold;
 }
 
 .size-manager {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   padding-top: 15px;
   border-top: 1px solid #ddd;
 }
 
 .size-inputs {
   display: flex;
-  gap: 20px;
-  margin-bottom: 15px;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 10px;
 }
 
 .size-input-group {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 5px;
+}
+
+.size-input-group label {
+  font-weight: normal;
 }
 
 .size-input-group input {
   padding: 8px;
   border-radius: 4px;
   border: 1px solid #ddd;
-  width: 100px;
+  width: 100%;
 }
 
 .size-hint {
@@ -304,6 +326,7 @@ const setFontSize = (size) => {
   border-radius: 4px;
   cursor: pointer;
   font-size: 14px;
+  width: 100%;
 }
 
 .reset-size-btn:hover {
@@ -311,7 +334,7 @@ const setFontSize = (size) => {
 }
 
 .style-customizer {
-  margin-top: 20px;
+  margin-top: 15px;
   padding-top: 15px;
   border-top: 1px solid #ddd;
 }
@@ -320,8 +343,20 @@ const setFontSize = (size) => {
   margin-bottom: 15px;
 }
 
+.color-picker label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.color-picker :deep(.vc-chrome) {
+  width: 100% !important;
+  box-shadow: none !important;
+  border: 1px solid #ddd !important;
+}
+
 h3 {
-  margin-bottom: 15px;
+  margin-bottom: 12px;
   color: #333;
+  font-size: 15px;
 }
 </style> 

@@ -112,12 +112,6 @@ const handleFontSizeChange = (fontSize) => {
 <template>
   <div class="app">
     <h1>Markdown 转小红书卡片</h1>
-    <ThemeManager 
-      @themeChange="handleThemeChange" 
-      @styleChange="handleStyleChange"
-      @sizeChange="handleSizeChange"
-      @fontSizeChange="handleFontSizeChange"
-    />
     <div class="toolbar">
       <div class="file-upload">
         <input
@@ -141,25 +135,36 @@ const handleFontSizeChange = (fontSize) => {
       </div>
       <button @click="exportAsImage" class="export-btn">导出为图片</button>
     </div>
-    <div class="editor-container">
-      <div class="editor-section">
-        <div class="section-header">Markdown 编辑</div>
-        <textarea
-          v-model="markdownContent"
-          placeholder="在这里输入 Markdown 内容..."
-          class="markdown-editor"
-        ></textarea>
-      </div>
-      <div class="preview-section">
-        <div class="section-header">小红书卡片预览</div>
-        <div class="card-container" :style="{ width: effectiveCardSize.width + 'px', height: effectiveCardSize.height + 'px' }">
-          <MarkdownCard 
-            :content="markdownContent" 
-            :theme="currentTheme" 
-            :cardSize="effectiveCardSize" 
-            ref="cardRef" 
-          />
+    <div class="main-container">
+      <div class="content-area">
+        <div class="editor-section">
+          <div class="section-header">Markdown 编辑</div>
+          <textarea
+            v-model="markdownContent"
+            placeholder="在这里输入 Markdown 内容..."
+            class="markdown-editor"
+          ></textarea>
         </div>
+        <div class="preview-section">
+          <div class="section-header">小红书卡片预览</div>
+          <div class="card-container" :style="{ width: effectiveCardSize.width + 'px', height: effectiveCardSize.height + 'px' }">
+            <MarkdownCard 
+              :content="markdownContent" 
+              :theme="currentTheme" 
+              :cardSize="effectiveCardSize" 
+              ref="cardRef" 
+            />
+          </div>
+        </div>
+      </div>
+      <div class="settings-panel">
+        <div class="settings-header">卡片设置</div>
+        <ThemeManager 
+          @themeChange="handleThemeChange" 
+          @styleChange="handleStyleChange"
+          @sizeChange="handleSizeChange"
+          @fontSizeChange="handleFontSizeChange"
+        />
       </div>
     </div>
   </div>
@@ -167,7 +172,7 @@ const handleFontSizeChange = (fontSize) => {
 
 <style>
 .app {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 20px;
 }
@@ -200,11 +205,33 @@ h1 {
   background-color: #66b1ff;
 }
 
-.editor-container {
+.main-container {
+  display: flex;
+  gap: 20px;
+}
+
+.content-area {
+  flex: 3;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 40px;
+  gap: 20px;
   align-items: flex-start;
+}
+
+.settings-panel {
+  flex: 1;
+  min-width: 300px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  overflow: hidden;
+}
+
+.settings-header {
+  background-color: #f0f0f0;
+  padding: 10px 15px;
+  font-weight: bold;
+  border-bottom: 1px solid #ddd;
 }
 
 .editor-section, .preview-section {
@@ -212,6 +239,9 @@ h1 {
   border-radius: 8px;
   background-color: #f9f9f9;
   overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .section-header {
@@ -219,11 +249,13 @@ h1 {
   padding: 10px 15px;
   font-weight: bold;
   border-bottom: 1px solid #ddd;
+  flex-shrink: 0;
 }
 
 .markdown-editor {
   width: 100%;
-  height: 500px;
+  height: 100%;
+  min-height: 500px;
   padding: 15px;
   border: none;
   font-family: monospace;
@@ -231,6 +263,7 @@ h1 {
   font-size: 14px;
   line-height: 1.6;
   background-color: #fff;
+  flex: 1;
 }
 
 .markdown-editor:focus {
@@ -242,5 +275,28 @@ h1 {
   overflow: auto;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 100%;
+}
+
+.preview-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (max-width: 1200px) {
+  .main-container {
+    flex-direction: column;
+  }
+  
+  .settings-panel {
+    min-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .content-area {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
