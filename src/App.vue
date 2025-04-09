@@ -17,7 +17,7 @@ const defaultMarkdown = `# MD2Card
 3. 长文自动拆分，或者根据 markdown \`---\` 横线拆分
 4. 可以复制图片到\`剪贴板\`，或者下载为\`PNG\`、\`SVG\`图片
 5. 所见即所得
-6. 免费`
+6. **全新日本杂志风格**主题`
 
 const markdownContent = ref('')
 const fileInput = ref(null)

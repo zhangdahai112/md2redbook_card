@@ -67,6 +67,7 @@ const getThemeClass = () => {
   if (props.theme.backgroundColor === '#f9f4ef') return 'art-deco-theme'
   if (props.theme.backgroundColor === '#ff6b6b') return 'pop-art-theme'
   if (props.theme.backgroundColor === '#f8f5e6') return 'retro-typewriter-theme'
+  if (props.theme.backgroundColor === '#f7f7f7' && props.theme.borderColor === '#e83015') return 'japanese-mag-theme'
   return ''
 }
 
@@ -362,5 +363,235 @@ watch(() => props.content, (newContent) => {
 .retro-typewriter-theme :deep(h3) {
   text-decoration: underline;
   text-align: left;
+}
+
+/* 日本杂志风格主题 */
+.japanese-mag-theme {
+  border: 1px solid transparent;
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+.japanese-mag-theme .card-header {
+  padding: 10px 12px;
+  box-sizing: border-box;
+  width: 100%;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.japanese-mag-theme .card-footer {
+  padding: 10px 12px;
+  box-sizing: border-box;
+  width: 100%;
+  border-top: 1px solid #e0e0e0;
+}
+
+.japanese-mag-theme::before {
+  content: 'STYLE';
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background-color: #000;
+  color: #fff;
+  padding: 1px 8px;
+  font-size: 9px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  z-index: 10;
+}
+
+/* 减小代码块的内边距 */
+.japanese-mag-theme :deep(pre) {
+  padding: 12px;
+  margin: 0.5em 0;
+  max-width: 100%;
+  overflow-x: auto;
+  box-sizing: border-box;
+}
+
+/* 调整引用块的间距 */
+.japanese-mag-theme :deep(blockquote) {
+  border-left: none;
+  position: relative;
+  font-style: italic;
+  padding: 8px 8px 8px 32px;
+  background-color: #f9f9f9;
+  color: #333;
+  margin: 16px 0;
+  text-align: left;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.japanese-mag-theme :deep(blockquote)::before {
+  content: '"';
+  font-family: Georgia, serif;
+  position: absolute;
+  left: 8px;
+  top: 0;
+  font-size: 50px;
+  color: #000000;
+  line-height: 1;
+}
+
+.japanese-mag-theme :deep(h1),
+.japanese-mag-theme :deep(h2),
+.japanese-mag-theme :deep(h3) {
+  position: relative;
+  padding-left: 10px;
+  border-bottom: none;
+  text-align: left;
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+  font-weight: 900;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.japanese-mag-theme :deep(h1)::before,
+.japanese-mag-theme :deep(h2)::before,
+.japanese-mag-theme :deep(h3)::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 5%;
+  height: 90%;
+  width: 4px;
+  background-color: #000000;
+}
+
+/* 确保标题文本不会溢出 */
+.japanese-mag-theme :deep(h1), 
+.japanese-mag-theme :deep(h2), 
+.japanese-mag-theme :deep(h3) {
+  max-width: 100%;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.japanese-mag-theme :deep(strong) {
+  color: v-bind('theme.borderColor');
+  font-weight: 900;
+  background-color: transparent;
+  padding: 0;
+}
+
+.japanese-mag-theme :deep(p) {
+  line-height: 1.6;
+  margin: 0.4em 0;
+  text-align: left;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.japanese-mag-theme :deep(ul) {
+  list-style-type: none;
+  padding-left: 1.8em;
+  margin-top: 1em;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.japanese-mag-theme :deep(ul li) {
+  position: relative;
+  margin-bottom: 0.7em;
+  text-align: left;
+  padding-left: 0.3em;
+  box-sizing: border-box;
+}
+
+.japanese-mag-theme :deep(ul li)::before {
+  content: '';
+  position: absolute;
+  left: -0.8em;
+  top: 0.7em;
+  width: 5px;
+  height: 5px;
+  background-color: #000000;
+}
+
+.japanese-mag-theme :deep(ol) {
+  counter-reset: custom-counter;
+  list-style-type: none;
+  padding-left: 2.2em;
+  margin-top: 1em;
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.japanese-mag-theme :deep(ol)::after {
+  content: '';
+  position: absolute;
+  left: 0.8em;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: v-bind('theme.borderColor');
+}
+
+.japanese-mag-theme :deep(ol li) {
+  position: relative;
+  counter-increment: custom-counter;
+  margin-bottom: 0.7em;
+  text-align: left;
+  padding-left: 0.3em;
+  box-sizing: border-box;
+}
+
+.japanese-mag-theme :deep(ol li)::before {
+  content: counter(custom-counter);
+  color: white;
+  background-color: black;
+  border-radius: 0;
+  font-weight: bold;
+  position: absolute;
+  left: -1.8em;
+  top: 0.15em;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  font-size: 11px;
+}
+
+/* 为列表项添加红色边框 */
+.japanese-mag-theme :deep(ol) {
+  position: relative;
+}
+
+.japanese-mag-theme :deep(ol)::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: v-bind('theme.borderColor');
+}
+
+/* 为有序列表文本添加特殊样式 */
+.japanese-mag-theme :deep(ol li) strong {
+  font-size: 1.05em;
+}
+
+/* 为日本杂志风格主题的图片添加特殊边框 */
+.japanese-mag-theme :deep(img) {
+  max-width: 100%;
+  border: 1px solid #e0e0e0;
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
+  margin: 10px auto;
+  display: block;
+  box-sizing: border-box;
+}
+
+.japanese-mag-theme .card-content {
+  padding: 14px 12px;
+  box-sizing: border-box;
+  width: 100%;
+  overflow-x: hidden;
 }
 </style> 

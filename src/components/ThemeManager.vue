@@ -11,6 +11,7 @@
         <option value="artDeco">艺术字装饰</option>
         <option value="popArt">波普艺术</option>
         <option value="retroTypewriter">复古打字机</option>
+        <option value="japaneseMag">日本杂志风</option>
       </select>
     </div>
     
@@ -171,6 +172,13 @@ const themes = {
     textColor: '#3b3a30',
     borderColor: '#c3bfb6',
     fontFamily: 'Courier New, Courier, monospace',
+    fontSize: 16
+  },
+  japaneseMag: {
+    backgroundColor: '#f7f7f7',
+    textColor: '#121212',
+    borderColor: '#e83015',
+    fontFamily: '"Hiragino Kaku Gothic Pro", "Meiryo", sans-serif',
     fontSize: 16
   }
 }
