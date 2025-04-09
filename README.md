@@ -9,6 +9,6 @@
 npm install
 npm run dev
 ```
-打开浏览器访问 http://localhost:5173/
 
 ### 演示
+![](https://raw.githubusercontent.com/xlwt2113/md2redbook_card/refs/heads/main/public/pic.png)
