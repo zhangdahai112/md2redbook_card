@@ -65,7 +65,7 @@
       <button class="reset-size-btn" @click="resetCardSize">重置尺寸</button>
     </div>
     
-    <div class="style-customizer">
+    <!--<div class="style-customizer">
       <h3>自定义颜色</h3>
       <div class="color-picker">
         <label>背景颜色</label>
@@ -79,7 +79,7 @@
         <label>边框颜色</label>
         <chrome-picker v-model="customStyle.borderColor" @input="updateCustomStyle" />
       </div>
-    </div>
+    </div>-->
   </div>
 </template>
 
