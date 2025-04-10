@@ -17,7 +17,8 @@ COPY . .
 # 安装项目依赖
 RUN pnpm install
 
-
+# 修改Vite配置以监听所有网络接口
+ENV HOST=0.0.0.0
 # 暴露5173端口(Vite默认端口)
 EXPOSE 5173
 
