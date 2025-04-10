@@ -23,4 +23,4 @@ ENV HOST=0.0.0.0
 EXPOSE 5173
 
 # 启动开发服务器
-CMD ["pnpm", "run", "dev"]
+CMD ["pnpm", "run", "dev", "--host"]
