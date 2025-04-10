@@ -83,7 +83,23 @@ const handleImageUpload = (event) => {
 
 const exportAsImage = async () => {
   if (cardRef.value) {
-    const canvas = await html2canvas(cardRef.value.$el)
+    // 等待所有图片加载完成
+    const images = cardRef.value.$el.getElementsByTagName('img')
+    const imageLoadPromises = Array.from(images).map(img => {
+      if (img.complete) return Promise.resolve()
+      return new Promise(resolve => {
+        img.onload = resolve
+        img.onerror = resolve
+      })
+    })
+    
+    await Promise.all(imageLoadPromises)
+    
+    const canvas = await html2canvas(cardRef.value.$el, {
+      useCORS: true,
+      allowTaint: true,
+      backgroundColor: null
+    })
     const link = document.createElement('a')
     link.download = '小红书卡片.png'
     link.href = canvas.toDataURL()
